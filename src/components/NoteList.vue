@@ -34,5 +34,5 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
-//test
+
 </style>
