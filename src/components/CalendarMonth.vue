@@ -31,17 +31,53 @@ import CalendarDateIndicator from './CalendarDateIndicator.vue'
 import CalendarDateSelector from './CalendarDateSelector.vue'
 import CalendarWeekdays from './CalendarWeekdays.vue'
 import CalendarMonthDayItem from './CalendarMonthDayItem.vue'
+import { getNumberOfDaysInMonth } from '@/common/helpers'
 
-let selectedDate = new Date() //выбранная дата (по умолчанию)
-const today = new Date() //dd mm yyyy
+const today = new Date()
+let selectedDate = new Date()
+
+const previousMonth = selectedDate.setMonth(selectedDate.getMonth - 1)
+const nextMonth = selectedDate.setMonth(selectedDate.getMonth + 1)
 
 const selectDate = (newSelectedDate) => {
   selectedDate = newSelectedDate
 }
 
+const currentMonthDays = computed(() => {
+  return [...Array(getNumberOfDaysInMonth(selectedDate))].map((day, index) => {
+    return {
+      date: `${selectedDate.getFullYear()}.${selectedDate.getMonth() + 1}.${index + 1}`,
+      isCurrentMonth: true,
+      fixedNotes: []
+    }
+  })
+})
+
+const previousMonthDays = computed(() => {
+  return [...Array(getNumberOfDaysInMonth(previousMonth))].map((day, index) => {
+    return {
+      date: `${selectedDate.getFullYear()}.${selectedDate.getMonth()}.${index + 1}`,
+      isCurrentMonth: false,
+      fixedNotes: []
+    }
+  })
+})
+
+const nextMonthDays = computed(() => {
+  return [...Array(getNumberOfDaysInMonth(nextMonth))].map((day, index) => {
+    return {
+      date: `${selectedDate.getFullYear()}.${selectedDate.getMonth() + 2}.${index + 1}`,
+      isCurrentMonth: false,
+      fixedNotes: []
+    }
+  })
+})
+
 const days = computed(() => {
   return [
-
+    ...previousMonthDays,
+    ...currentMonthDays,
+    ...nextMonthDays
   ]
 })
 </script>

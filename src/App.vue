@@ -1,14 +1,17 @@
 <template>
-  <HomeView/>
+  <HomeView />
+  <HomeCalendar />
 </template>
 
 <script>
 import HomeView from './views/HomeView.vue'
+import HomeCalendar from './views/HomeCalendar.vue'
 
 export default {
   name: 'App',
   components: {
-    HomeView
+    HomeView,
+    HomeCalendar
 }
 }
 </script>

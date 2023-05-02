@@ -1,13 +1,14 @@
 <template>
   <div class="calendar-date-selector">
     <span @click="selectPrevious">﹤</span>
-    <span @click="selectCurrent">Сегодня</span>
+    <span @click="selectCurrent">{{ formatingCurrentDate(new Date()) }}</span>
     <span @click="selectNext">﹥</span>
   </div>
 </template>
 
 <script setup>
   import { defineProps, defineEmits } from 'vue'
+  import { formatingCurrentDate } from '@/common/helpers'
 
   const props = defineProps({
     currentDate: {
@@ -24,17 +25,17 @@
   const emit = defineEmits(['dateSelected'])
 
   const selectPrevious = () => {
-    let newSelectedDate = props.currentDate + 
+    const newSelectedDate = props.currentDate - 1
     emit('dateSelected', newSelectedDate)
   }
 
   const selectCurrent = () => {
-    let newSelectedDate
+    const newSelectedDate = new Date()
     emit('dateSelected', newSelectedDate)
   }
 
   const selectNext = () => {
-    let newSelectedDate
+    const newSelectedDate = props.currentDate + 1
     emit('dateSelected', newSelectedDate)
   }
 </script>

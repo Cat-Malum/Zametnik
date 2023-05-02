@@ -12,7 +12,7 @@
 <script setup>
 import { computed } from 'vue'
 
-const WEEKDAYS = ['пон', 'вто', 'сре', 'чет', 'пят', 'суб', 'вос']
+const WEEKDAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
 const weekdays = computed(() => {
   return WEEKDAYS
 })
