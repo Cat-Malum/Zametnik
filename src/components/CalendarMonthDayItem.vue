@@ -6,16 +6,21 @@
       'calendar-day__today': props.isToday
     }"
   >
-    <span>{{ label }}</span>
+    <button>{{ props.dayNumber }}</button>
   </li>
 </template>
 
 <script setup>
-import { defineProps, computed } from 'vue'
+import { defineProps } from 'vue'
 
 const props = defineProps({
   day: {
     type: Object,
+    required: true
+  },
+
+  dayNumber: {
+    type: String,
     required: true
   },
 
@@ -28,10 +33,6 @@ const props = defineProps({
     type: Boolean,
     default: false
   }
-})
-
-const label = computed(() => {
-  return new Date().getDay()
 })
 </script>
 

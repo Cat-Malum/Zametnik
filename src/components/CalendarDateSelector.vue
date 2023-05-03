@@ -7,39 +7,41 @@
 </template>
 
 <script setup>
-  import { defineProps, defineEmits } from 'vue'
-  import { formatingCurrentDate } from '@/common/helpers'
+import { defineProps, defineEmits } from 'vue'
+import { formatingCurrentDate } from '@/common/helpers'
 
-  const props = defineProps({
-    currentDate: {
-      type: String,
-      required: true
-    },
+const props = defineProps({
+  currentDate: {
+    type: Date,
+    required: true
+  },
 
-    selectedDate: {
-      type: Object,
-      required: true
-    }
-  })
-
-  const emit = defineEmits(['dateSelected'])
-
-  const selectPrevious = () => {
-    const newSelectedDate = props.currentDate - 1
-    emit('dateSelected', newSelectedDate)
+  selectedDate: {
+    type: Object,
+    required: true
   }
+})
 
-  const selectCurrent = () => {
-    const newSelectedDate = new Date()
-    emit('dateSelected', newSelectedDate)
-  }
+const emit = defineEmits(['dateSelected'])
 
-  const selectNext = () => {
-    const newSelectedDate = props.currentDate + 1
-    emit('dateSelected', newSelectedDate)
-  }
+const selectPrevious = () => {
+  const newSelectedDate = props.currentDate.setMonth(props.currentDate.getMonth() - 1)
+  emit('dateSelected', newSelectedDate)
+}
+
+const selectCurrent = () => {
+  const newSelectedDate = new Date()
+  emit('dateSelected', newSelectedDate)
+}
+
+const selectNext = () => {
+  const newSelectedDate = props.currentDate.setMonth(props.currentDate.getMonth() + 1)
+  emit('dateSelected', newSelectedDate)
+}
 </script>
 
 <style scoped lang="scss">
-
+span {
+  cursor: pointer;
+}
 </style>

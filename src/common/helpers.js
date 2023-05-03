@@ -20,5 +20,3 @@ export const getStartWeekday = (date) => {
   
   return index + 1;
 }
-
-getStartWeekday(new Date())
