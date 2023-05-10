@@ -18,9 +18,9 @@
       <CalendarMonthDayItem
         v-for="day in days"
         :key="day.date"
-        :day="day"
+        :day="day.date"
         :dayNumber="day.dayNumber"
-        :is-today="day.date === today"
+        :is-today="Number(day.dayNumber) === today.getDate()"
       />
     </ol>
   </div>
@@ -79,9 +79,9 @@ const nextMonthDays = computed(() => {
 
 const days = computed(() => {
   return [
-    ...Array(previousMonthDays),
-    ...Array(currentMonthDays),
-    ...Array(nextMonthDays)
+    ...previousMonthDays.value,
+    ...currentMonthDays.value,
+    ...nextMonthDays.value
   ]
 })
 </script>

@@ -15,7 +15,7 @@ import { defineProps } from 'vue'
 
 const props = defineProps({
   day: {
-    type: Object,
+    type: String,
     required: true
   },
 
