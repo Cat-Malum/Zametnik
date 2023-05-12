@@ -5,8 +5,11 @@
       'calendar-day__not-current': !props.isCurrentMonth,
       'calendar-day__today': props.isToday
     }"
+    :style="{
+      '--start-from': firstDayPreviousMonth.date === props.day ? startWeekday : ''
+    }"
   >
-    <button>{{ props.dayNumber }}</button>
+    {{ props.dayNumber }}
   </li>
 </template>
 
@@ -18,20 +21,25 @@ const props = defineProps({
     type: String,
     required: true
   },
-
   dayNumber: {
     type: String,
     required: true
   },
-
   isCurrentMonth: {
     type: Boolean,
     default: false
   },
-
   isToday: {
     type: Boolean,
     default: false
+  },
+  startWeekday: {
+    type: Number,
+    required: true
+  },
+  firstDayPreviousMonth: {
+    type: Object,
+    required: true
   }
 })
 </script>

@@ -6,7 +6,7 @@
         class="calendar-month-header__selected-month"
       />
       <CalendarDateSelector
-        :current-date="today"
+        :current-date="new Date()"
         :selected-date="selectedDate"
         @dateSelected="selectDate"
       />
@@ -20,7 +20,10 @@
         :key="day.date"
         :day="day.date"
         :dayNumber="day.dayNumber"
-        :is-today="Number(day.dayNumber) === today.getDate()"
+        :isCurrentMonth="day.isCurrentMonth"
+        :is-today="day.date === today"
+        :startWeekday="startWeekday"
+        :firstDayPreviousMonth = "firstDayPreviousMonth"
       />
     </ol>
   </div>
@@ -32,9 +35,10 @@ import CalendarDateIndicator from './CalendarDateIndicator.vue'
 import CalendarDateSelector from './CalendarDateSelector.vue'
 import CalendarWeekdays from './CalendarWeekdays.vue'
 import CalendarMonthDayItem from './CalendarMonthDayItem.vue'
-import { getNumberOfDaysInMonth } from '@/common/helpers'
+import { getNumberOfDaysInMonth, getStartWeekday } from '@/common/helpers'
 
-const today = new Date()
+const startWeekday = getStartWeekday()
+const today = `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`
 let selectedDate = new Date()
 
 const selectDate = (newSelectedDate) => {
@@ -84,6 +88,8 @@ const days = computed(() => {
     ...nextMonthDays.value
   ]
 })
+
+const firstDayPreviousMonth = previousMonthDays.value[0]
 </script>
 
 <style scoped lang="scss">
