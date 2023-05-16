@@ -13,19 +13,12 @@
     </div>
 
     <CalendarWeekdays />
- 
-    <ol class="days-grid">
-      <CalendarMonthDayItem
-        v-for="day in days"
-        :key="day.date"
-        :day="day.date"
-        :dayNumber="day.dayNumber"
-        :isCurrentMonth="day.isCurrentMonth"
-        :is-today="day.date === today"
-        :startWeekday="startWeekday"
-        :firstDayPreviousMonth = "firstDayPreviousMonth"
-      />
-    </ol>
+    <CalendarDays
+      :days="days"
+      :today="today"
+      :startWeekday="startWeekday"
+      :firstDayPreviousMonth = "firstDayPreviousMonth"
+    />
   </div>
 </template>
 
@@ -34,8 +27,8 @@ import { computed } from 'vue'
 import CalendarDateIndicator from './CalendarDateIndicator.vue'
 import CalendarDateSelector from './CalendarDateSelector.vue'
 import CalendarWeekdays from './CalendarWeekdays.vue'
-import CalendarMonthDayItem from './CalendarMonthDayItem.vue'
-import { getNumberOfDaysInMonth, getStartWeekday } from '@/common/helpers'
+import CalendarDays from './CalendarDays.vue'
+import { getNumberOfDaysInMonth, getStartWeekday} from '@/common/helpers'
 
 const startWeekday = getStartWeekday()
 const today = `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`

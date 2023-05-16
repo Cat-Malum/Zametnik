@@ -1,5 +1,5 @@
 <template>
-  <li
+  <div
     class="calendar-day"
     :class="{
       'calendar-day__not-current': !props.isCurrentMonth,
@@ -10,7 +10,7 @@
     }"
   >
     {{ props.dayNumber }}
-  </li>
+  </div>
 </template>
 
 <script setup>

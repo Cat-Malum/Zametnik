@@ -1,12 +1,12 @@
 <template>
-  <ol class="day-of-week">
-    <li
+  <div class="day-of-week">
+    <div
       v-for="weekday in weekdays"
       :key="weekday"
     >
       {{ weekday }}
-    </li>
-  </ol>
+    </div>
+  </div>
 </template>
 
 <script setup>

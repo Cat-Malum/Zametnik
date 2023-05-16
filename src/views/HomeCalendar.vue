@@ -15,6 +15,13 @@ li {
 .days-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+
+  max-height: 100px;
+  overflow: hidden;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 }
 
 .calendar-day {
