@@ -1,6 +1,22 @@
-@mixin input_button {
+@mixin input {
   padding: 10px;
   background-color: #fff;
   border: 1px solid lightslategray;
   border-radius: 5px;
+}
+
+@mixin button {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid lightslategray;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+
+  &:hover {
+    color: #fff;
+    background-color: lightslategray;
+    transform: 1s;
+  }
 }

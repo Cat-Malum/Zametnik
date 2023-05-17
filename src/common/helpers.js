@@ -31,3 +31,11 @@ export const getStartWeekday = () => {
   
   return weekdayIndex;
 }
+
+//Функции для заметок
+export const formatingDateForNote = () => {
+  const date = new Date();
+  const result = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+
+  return result;
+}

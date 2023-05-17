@@ -28,13 +28,17 @@
         <li
           v-for="(value, index) in notes"
           :key="index"
-          class="note"
+          class="note-block__note"
         >
-          <div>
+          <div
+            class="note-block__left-segment"
+            @click="openText"
+          >
             <h4>{{ value.title }}</h4>
             <p>{{ value.description }}</p>
           </div>
-          <div>
+          <div class="note-block__right-segment">
+            <span>{{ formatingDateForNote() }}</span>
             <button @click="removeNote(value.title)">Удалить</button>
           </div>
         </li>
@@ -51,6 +55,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { formatingDateForNote } from '@/common/helpers'
 
 const title = ref('')
 const description = ref('')
@@ -71,10 +76,24 @@ const removeNote = (title) => {
   const filteredNotes = notes.value.filter(item => item.title !== title)
   notes.value = filteredNotes
 }
+
+const openText = (event) => {
+  const block = event.target.closest('.note-block__left-segment')
+  block.classList.toggle('open')
+}
 </script>
 
 <style lang="scss">
 @import '@/assets/scss/mixins/input_button.scss';
+
+main {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+button {
+  @include button;
+}
 
 .header {
   text-align: center;
@@ -82,11 +101,6 @@ const removeNote = (title) => {
   margin-bottom: 3vh;
   background-color: lightslategrey;
   color: antiquewhite;
-}
-
-main {
-  max-width: 80%;
-  margin: 0 auto;
 }
 
 .form {
@@ -97,7 +111,7 @@ main {
   margin: 15px 0 35px;
 
   input {
-    @include input_button;
+    @include input;
 
     &::placeholder {
       letter-spacing: 0.05rem;
@@ -105,7 +119,7 @@ main {
   }
 
   textarea {
-    @include input_button;
+    @include input;
     resize: vertical;
     margin-bottom: 1vh;
     min-height: 10vh;
@@ -114,45 +128,50 @@ main {
       letter-spacing: 0.05rem;
     }
   }
-
-  button {
-    @include input_button;
-    margin-bottom: 1vh;
-    font-size: 0.8rem;
-    letter-spacing: 0.08rem;
-    text-transform: uppercase;
-
-    &:hover {
-      color: #fff;
-      background-color: lightslategray;
-      transform: 1s;
-    }
-  }
 }
 
 .note-block {
   margin: 15px 0;
 
   &__list {
-    list-style: none;
     display: block;
+    list-style: none;
 
-    .note {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      @include input_button;
-      margin-bottom: 5px;
+    span {
+      font-size: 0.8rem;
+      margin-right: 2vw;
     }
+  }
 
-    button {
-      @include input_button;
+  &__note {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include input;
+    margin-bottom: 5px;
+  }
+
+  &__left-segment {
+    max-width: 70%;
+    cursor: pointer;
+
+    h4, p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
 
 .not-notes {
   margin: 15px 0;
+}
+
+.open {
+  h4, p {
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
 }
 </style>
