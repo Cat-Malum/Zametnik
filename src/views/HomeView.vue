@@ -2,7 +2,7 @@
   <div class="header">
     <h1 class="title title--main">Заметник</h1>
   </div>
-  <main>
+  <main class="content">
     <div class="form">
       <input
         v-model="title"
@@ -21,14 +21,15 @@
 
     <h3 class="title">Список заметок</h3>
     <div
-      v-if="notes.length"
+      v-show="notes.length"
       class="note-block"
     >
-      <ul class="note-block__list">
+    <transition name="list-wrapper">
+      <transition-group name="list" tag="ul" class="note-block__list">
         <li
-          v-for="(value, index) in notes"
-          :key="index"
-          class="note-block__note"
+          v-for="value in notes"
+          :key="value.id"
+          class="note-block__note list-item"
         >
           <div
             class="note-block__left-segment"
@@ -39,13 +40,14 @@
           </div>
           <div class="note-block__right-segment">
             <span>{{ formatingDateForNote() }}</span>
-            <button @click="removeNote(value.title)">Удалить</button>
+            <button @click="removeNote(value.id)">Удалить</button>
           </div>
         </li>
-      </ul>
+      </transition-group>
+    </transition>
     </div>
-    <div 
-      v-else
+    <div
+      v-show="!notes.length"
       class="not-notes"
     >
       Заметок пока нет
@@ -60,11 +62,13 @@ import { formatingDateForNote } from '@/common/helpers'
 const title = ref('')
 const description = ref('')
 const notes = ref([])
+let counterNotes = ref(0)
 
 const addNote = () => {
-  if (title.value !== '' && description.value !== '') {
-    notes.value.push({title: title.value, description: description.value})
+  if (title.value !== '' && description.value !== '') {    
+    notes.value.push({id: counterNotes.value, title: title.value, description: description.value})
 
+    counterNotes.value++
     title.value = ''
     description.value = ''
   } else {
@@ -72,8 +76,8 @@ const addNote = () => {
   }
 }
 
-const removeNote = (title) => {
-  const filteredNotes = notes.value.filter(item => item.title !== title)
+const removeNote = (id) => {
+  const filteredNotes = notes.value.filter(item => item.id !== id)
   notes.value = filteredNotes
 }
 
@@ -173,5 +177,20 @@ button {
     white-space: normal;
     overflow-wrap: break-word;
   }
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(60px);
 }
 </style>

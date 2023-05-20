@@ -19,6 +19,7 @@ li {
   max-height: 100px;
   overflow: hidden;
   overflow-y: scroll;
+  
   &::-webkit-scrollbar {
     width: 0;
   }
