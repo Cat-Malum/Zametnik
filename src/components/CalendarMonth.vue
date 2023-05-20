@@ -13,21 +13,28 @@
     </div>
 
     <CalendarWeekdays />
-    <CalendarDays
-      :days="days"
-      :today="today"
-      :startWeekday="startWeekday"
-      :firstDayPreviousMonth = "firstDayPreviousMonth"
-    />
+    
+    <div ref="calendarDays" class="days-grid">
+      <CalendarMonthDayItem
+        v-for="day in days"
+        :key="day.date"
+        :day="day.date"
+        :dayNumber="day.dayNumber"
+        :isCurrentMonth="day.isCurrentMonth"
+        :is-today="day.date === today"
+        :startWeekday="startWeekday"
+        :firstDayPreviousMonth = "firstDayPreviousMonth"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
 import CalendarDateIndicator from './CalendarDateIndicator.vue'
 import CalendarDateSelector from './CalendarDateSelector.vue'
 import CalendarWeekdays from './CalendarWeekdays.vue'
-import CalendarDays from './CalendarDays.vue'
+import CalendarMonthDayItem from './CalendarMonthDayItem.vue'
 import { getNumberOfDaysInMonth, getStartWeekday} from '@/common/helpers'
 
 const startWeekday = getStartWeekday()
@@ -83,6 +90,16 @@ const days = computed(() => {
 })
 
 const firstDayPreviousMonth = previousMonthDays.value[0]
+
+const calendarDays = ref(null)
+watchEffect(() => {
+  const firstDayCurrentMonth = calendarDays.value.querySelector('.calendar-day__current')
+
+  firstDayCurrentMonth.scrollIntoView({block: 'start'})
+},
+{
+  flush: 'post'
+})
 </script>
 
 <style scoped lang="scss">

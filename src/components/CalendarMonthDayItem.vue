@@ -2,6 +2,7 @@
   <div
     class="calendar-day"
     :class="{
+      'calendar-day__current': props.isCurrentMonth,
       'calendar-day__not-current': !props.isCurrentMonth,
       'calendar-day__today': props.isToday
     }"
