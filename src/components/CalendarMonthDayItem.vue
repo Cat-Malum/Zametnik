@@ -4,7 +4,9 @@
     :class="{
       'calendar-day__current': props.isCurrentMonth,
       'calendar-day__not-current': !props.isCurrentMonth,
-      'calendar-day__today': props.isToday
+      'calendar-day__today': props.isToday,
+      'previous-month': props.previousMonth,
+      'next-month': props.nextMonth
     }"
     :style="{
       '--start-from': firstDayPreviousMonth.date === props.day ? startWeekday : ''
@@ -41,6 +43,14 @@ const props = defineProps({
   firstDayPreviousMonth: {
     type: Object,
     required: true
+  },
+  previousMonth: {
+    type: Boolean,
+    default: false
+  },
+  nextMonth: {
+    type: Boolean,
+    default: false
   }
 })
 </script>

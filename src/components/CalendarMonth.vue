@@ -23,7 +23,9 @@
         :isCurrentMonth="day.isCurrentMonth"
         :is-today="day.date === today"
         :startWeekday="startWeekday"
-        :firstDayPreviousMonth = "firstDayPreviousMonth"
+        :firstDayPreviousMonth="firstDayPreviousMonth"
+        :previousMonth="day.previousMonth"
+        :nextMonth="day.nextMonth"
       />
     </div>
   </div>
@@ -35,23 +37,23 @@ import CalendarDateIndicator from './CalendarDateIndicator.vue'
 import CalendarDateSelector from './CalendarDateSelector.vue'
 import CalendarWeekdays from './CalendarWeekdays.vue'
 import CalendarMonthDayItem from './CalendarMonthDayItem.vue'
-import { getNumberOfDaysInMonth, getStartWeekday} from '@/common/helpers'
+import { getNumberOfDaysInMonth, getStartWeekday } from '@/common/helpers'
 
 const startWeekday = getStartWeekday()
 const today = `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`
-let selectedDate = new Date()
+let selectedDate = ref(new Date())
 
 const selectDate = (newSelectedDate) => {
   selectedDate = newSelectedDate
 }
 
-const previousMonth = new Date(new Date().setMonth(selectedDate.getMonth() - 1))
-const nextMonth = new Date(new Date().setMonth(selectedDate.getMonth() + 1))
+const previousMonth = new Date(new Date().setMonth(selectedDate.value.getMonth() - 1))
+const nextMonth = new Date(new Date().setMonth(selectedDate.value.getMonth() + 1))
 
 const currentMonthDays = computed(() => {
-  return [...Array(getNumberOfDaysInMonth(selectedDate))].map((day, index) => {
+  return [...Array(getNumberOfDaysInMonth(selectedDate.value))].map((day, index) => {
     return {
-      date: `${index + 1}.${selectedDate.getMonth() + 1}.${selectedDate.getFullYear()}`,
+      date: `${index + 1}.${selectedDate.value.getMonth() + 1}.${selectedDate.value.getFullYear()}`,
       dayNumber: `${index + 1}`,
       isCurrentMonth: true,
       fixedNotes: []
@@ -62,9 +64,10 @@ const currentMonthDays = computed(() => {
 const previousMonthDays = computed(() => {
   return [...Array(getNumberOfDaysInMonth(previousMonth))].map((day, index) => {
     return {
-      date: `${index + 1}.${selectedDate.getMonth()}.${selectedDate.getFullYear()}`,
+      date: `${index + 1}.${selectedDate.value.getMonth()}.${selectedDate.value.getFullYear()}`,
       dayNumber: `${index + 1}`,
       isCurrentMonth: false,
+      previousMonth: true,
       fixedNotes: []
     }
   })
@@ -73,9 +76,10 @@ const previousMonthDays = computed(() => {
 const nextMonthDays = computed(() => {
   return [...Array(getNumberOfDaysInMonth(nextMonth))].map((day, index) => {
     return {
-      date: `${index + 1}.${selectedDate.getMonth() + 2}.${selectedDate.getFullYear()}`,
+      date: `${index + 1}.${selectedDate.value.getMonth() + 2}.${selectedDate.value.getFullYear()}`,
       dayNumber: `${index + 1}`,
       isCurrentMonth: false,
+      nextMonth: true,
       fixedNotes: []
     }
   })
@@ -93,9 +97,23 @@ const firstDayPreviousMonth = previousMonthDays.value[0]
 
 const calendarDays = ref(null)
 watchEffect(() => {
-  const firstDayCurrentMonth = calendarDays.value.querySelector('.calendar-day__current')
+  const firstDayOfCurrentMonth = calendarDays.value.querySelector('.calendar-day__current')
+  firstDayOfCurrentMonth.scrollIntoView({block: 'start'})
 
-  firstDayCurrentMonth.scrollIntoView({block: 'start'})
+  const previousMonth = calendarDays.value.querySelectorAll('.previous-month')
+  const previousMonthArray = Array.prototype.slice.call(previousMonth) //Преобразует NodeList в Array
+  const lastDayOfPreviousMonth = previousMonthArray.at(-1)
+  const lastDayOfPreviousMonthCoor = lastDayOfPreviousMonth.getBoundingClientRect().bottom
+
+  const topCalendarDays = calendarDays.value.getBoundingClientRect().top
+  const bottomCalendarDays = calendarDays.value.getBoundingClientRect().bottom
+  const middleCalendarDays = topCalendarDays - bottomCalendarDays
+  console.log(middleCalendarDays)
+  if (middleCalendarDays === lastDayOfPreviousMonthCoor) {
+    console.log(selectedDate.value)
+    selectDate(selectedDate.value.setMonth(selectedDate.value.getMonth() - 1))
+    console.log(selectedDate.value)
+  }
 },
 {
   flush: 'post'
