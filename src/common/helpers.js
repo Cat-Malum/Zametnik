@@ -16,9 +16,9 @@ export const getNumberOfDaysInMonth = (date) => {
 
 export const getWeekdayIndex = (date) => {
   const dayIndex = date.getDay();
-  const index = dayIndex ? dayIndex - 1 : 6;
+  const index = dayIndex ? dayIndex : 7;
   
-  return index + 1;
+  return index;
 }
 
 export const getStartWeekday = () => {
