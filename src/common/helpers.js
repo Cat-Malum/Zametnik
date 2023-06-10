@@ -21,14 +21,11 @@ export const getWeekdayIndex = (date) => {
   return index;
 }
 
-export const getStartWeekday = () => {
-  const date = new Date();
-
-  date.setMonth(date.getMonth() - 1);
+export const getStartWeekday = (date) => {
   date.setDate(1);
 
   const weekdayIndex = getWeekdayIndex(date);
-  
+  console.log(weekdayIndex)
   return weekdayIndex;
 }
 
