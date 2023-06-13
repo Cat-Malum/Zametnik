@@ -36,6 +36,14 @@ const selectNext = () => {
 </script>
 
 <style scoped lang="scss">
+.calendar-date-selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 0.5vh 0 1.5vh;
+}
+
 span {
   cursor: pointer;
 }

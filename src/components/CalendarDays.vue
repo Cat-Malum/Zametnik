@@ -14,25 +14,29 @@
 </template>
 
 <script setup>
-  import { defineProps } from 'vue'
-  import CalendarMonthDayItem from './CalendarMonthDayItem.vue'
+import { defineProps } from 'vue'
+import CalendarMonthDayItem from './CalendarMonthDayItem.vue'
 
-  const props = defineProps({
-    days: {
-      type: Array,
-      required: true
-    },
-    today: {
-      type: String,
-      required: true
-    },
-    startWeekday: {
-      type: Number,
-      required: true
-    },
-    firstDayPreviousMonth: {
-      type: Object,
-      required: true
-    }
-  })
+const props = defineProps({
+  days: {
+    type: Array,
+    required: true
+  },
+  today: {
+    type: String,
+    required: true
+  },
+  startWeekday: {
+    type: Number,
+    required: true
+  },
+  firstDayPreviousMonth: {
+    type: Object,
+    required: true
+  }
+})
 </script>
+
+<style scoped lang="scss">
+
+</style>

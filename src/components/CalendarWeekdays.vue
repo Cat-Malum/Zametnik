@@ -19,5 +19,10 @@ const weekdays = computed(() => {
 </script>
 
 <style scoped lang="scss">
-
+.day-of-week {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 5px 0;
+}
 </style>

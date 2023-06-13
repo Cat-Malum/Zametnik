@@ -1,7 +1,4 @@
 <template>
-  <div class="header">
-    <h1 class="title title--main">Заметник</h1>
-  </div>
   <main class="content">
     <div class="form">
       <input
@@ -90,21 +87,13 @@ const openText = (event) => {
 <style lang="scss">
 @import '@/assets/scss/mixins/input_button.scss';
 
-main {
-  max-width: 80%;
-  margin: 0 auto;
-}
-
 button {
   @include button;
 }
 
-.header {
-  text-align: center;
-  padding: 2vh 0;
-  margin-bottom: 3vh;
-  background-color: lightslategrey;
-  color: antiquewhite;
+.content {
+  min-width: 80%;
+  margin: 0;
 }
 
 .form {
@@ -112,7 +101,7 @@ button {
   grid-template-rows: auto;
   grid-template-columns: 100%;
   grid-gap: 5px;
-  margin: 15px 0 35px;
+  margin: 0 0 35px;
 
   input {
     @include input;

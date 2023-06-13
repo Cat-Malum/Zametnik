@@ -1,15 +1,22 @@
 <template>
-  <HomeView />
-  <HomeCalendar />
+  <main class="app-main">
+    <HeaderHome />
+    <div class="app-content">
+      <HomeView />
+      <HomeCalendar />
+    </div>
+  </main>
 </template>
 
 <script>
+import HeaderHome from './views/HeaderHome.vue'
 import HomeView from './views/HomeView.vue'
 import HomeCalendar from './views/HomeCalendar.vue'
 
 export default {
   name: 'App',
   components: {
+    HeaderHome,
     HomeView,
     HomeCalendar
 }
@@ -31,5 +38,17 @@ html {
 
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: 5px;
+}
+
+.app-main {
+  position: relative;
+  max-width: 100%;
+  margin: 0, auto;
+}
+
+.app-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6vw;
 }
 </style>

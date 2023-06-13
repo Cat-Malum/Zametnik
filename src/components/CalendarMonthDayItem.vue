@@ -55,6 +55,32 @@ const props = defineProps({
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.calendar-day {
+  width: 50%;
+  height: 50%;
+  margin: 5px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 100%;
+
+  grid-column-start: var(--start-from);
+
+  &:hover {
+    outline: 1px solid orange;
+  }
+
+  &__not-current {
+    color: rgba($color: #000000, $alpha: 0.2);
+  }
+
+  &__today {
+    background-color: orange;
+  }
+}
 </style>
