@@ -10,6 +10,6 @@ import CalendarMonth from '@/components/CalendarMonth.vue'
 
 <style lang="scss">
 .calendar {
-  margin: 0;
+  margin: 0 0 0 15px;
 }
 </style>

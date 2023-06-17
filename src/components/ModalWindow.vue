@@ -1,18 +1,16 @@
 <template>
-  <transition name="slide-fade">
-    <div
-      class="modal-window-opened"
-      v-if="props.signal"
+  <div
+    class="modal-window-opened"
+    v-if="props.signal"
+  >
+    <slot />
+    <button 
+      class="close-window-button" 
+      @click="close"
     >
-      <slot />
-      <button 
-        class="close-window-button" 
-        @click="close"
-      >
-        X
-      </button>
-    </div>
-  </transition>
+      X
+    </button>
+  </div>
 </template>
 
 <script setup>
@@ -43,17 +41,7 @@ const close = () => {
   min-height: 100%;
 }
 
-.slide-fade-enter-active {
-  transition: all 0.4s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
+.close-window-button {
+  margin-left: 15px;
 }
 </style>
