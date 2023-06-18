@@ -2,7 +2,7 @@
   <transition name="slide-fade">
     <ModalWindow
       :signal="props.signal"
-      @modalOpen="closeWindow"
+      @modalClose="closeWindow"
       class="modal-window"
     >
       <div class="calendar-month">
@@ -111,8 +111,8 @@ const days = computed(() => {
 
 const firstDayPreviousMonth = previousMonthDays.value[0]
 
-const closeWindow = (event) => {
-  if (!event) {
+const closeWindow = (signal) => {
+  if (!signal) {
     emit('dropSignal', false)
   }
 }
@@ -140,7 +140,6 @@ li {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 
-  max-height: 100px;
   text-align: center;
   
   &::-webkit-scrollbar {

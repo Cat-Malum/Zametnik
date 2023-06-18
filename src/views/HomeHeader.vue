@@ -10,10 +10,10 @@
 
 <style scoped lang="scss">
 .header {
-  text-align: center;
   padding: 2vh 0;
   margin-bottom: 3vh;
   background-color: lightslategrey;
   color: antiquewhite;
+  text-align: center;
 }
 </style>

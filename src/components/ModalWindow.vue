@@ -26,11 +26,11 @@ const props = defineProps({
 
 const emit = defineEmits(['modalOpen'])
 
-let statusOpen = true
+let statusWindow = true
 
 const close = () => {
-  statusOpen = false
-  emit('modalOpen', statusOpen)
+  statusWindow = false
+  emit('modalClose', statusWindow)
 }
 </script>
 
@@ -38,7 +38,6 @@ const close = () => {
 .modal-window-opened {
   display: flex;
   justify-content: center;
-  min-height: 100%;
 }
 
 .close-window-button {

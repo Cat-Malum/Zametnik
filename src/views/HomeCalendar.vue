@@ -1,6 +1,6 @@
 <template>
   <main class="calendar">
-    <CalendarMonth />
+    <calendar-month />
   </main>
 </template>
 
@@ -10,6 +10,7 @@ import CalendarMonth from '@/components/CalendarMonth.vue'
 
 <style lang="scss">
 .calendar {
+  width: auto;
   margin: 0 0 0 15px;
 }
 </style>

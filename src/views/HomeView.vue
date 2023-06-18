@@ -1,20 +1,9 @@
 <template>
-  <main class="content">
-    <div class="form">
-      <input
-        v-model="title"
-        type="text"
-        placeholder="Название"
-      >
-      <textarea
-        v-model="description"
-        type="text"
-        placeholder="Описание"
-      ></textarea>
-      <button @click="addNote">
-        Записать
-      </button>
-    </div>
+  <main>
+    <top-module
+      :notes="notes"
+      @createNote="addNote"
+    />
 
     <h3 class="title">Список заметок</h3>
     <div
@@ -55,22 +44,12 @@
 <script setup>
 import { ref } from 'vue'
 import { formatingDateForNote } from '@/common/helpers'
+import TopModule from './TopModule.vue'
 
-const title = ref('')
-const description = ref('')
 const notes = ref([])
-let counterNotes = ref(0)
 
-const addNote = () => {
-  if (title.value !== '' && description.value !== '') {    
-    notes.value.push({id: counterNotes.value, title: title.value, description: description.value})
-
-    counterNotes.value++
-    title.value = ''
-    description.value = ''
-  } else {
-    alert('Введите все значения')
-  }
+const addNote = (note) => {
+  notes.value.push(note)
 }
 
 const removeNote = (id) => {
@@ -87,40 +66,13 @@ const openText = (event) => {
 <style lang="scss">
 @import '@/assets/scss/mixins/input_button.scss';
 
-button {
-  @include button;
-}
-
-.content {
+main {
   width: 100%;
   margin: 0;
 }
 
-.form {
-  display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 100%;
-  grid-gap: 5px;
-  margin: 0 0 35px;
-
-  input {
-    @include input;
-
-    &::placeholder {
-      letter-spacing: 0.05rem;
-    }
-  }
-
-  textarea {
-    @include input;
-    resize: vertical;
-    margin-bottom: 1vh;
-    min-height: 10vh;
-
-    &::placeholder {
-      letter-spacing: 0.05rem;
-    }
-  }
+button {
+  @include button;
 }
 
 .note-block {

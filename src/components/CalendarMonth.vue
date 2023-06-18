@@ -30,7 +30,5 @@ const changeSignal = (emit) => {
 </script>
 
 <style scoped lang="scss">
-.calendarOpenButton {
-  height: 63%;
-}
+
 </style>

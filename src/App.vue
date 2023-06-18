@@ -1,24 +1,24 @@
 <template>
   <main class="app-main">
-    <HeaderHome />
+    <home-header />
     <div class="app-content">
-      <HomeView />
-      <HomeCalendar />
+      <home-view />
+      <!-- <home-calendar /> -->
     </div>
   </main>
 </template>
 
 <script>
-import HeaderHome from './views/HeaderHome.vue'
+import HomeHeader from './views/HomeHeader.vue'
 import HomeView from './views/HomeView.vue'
-import HomeCalendar from './views/HomeCalendar.vue'
+// import HomeCalendar from './views/HomeCalendar.vue'
 
 export default {
   name: 'App',
   components: {
-    HeaderHome,
+    HomeHeader,
     HomeView,
-    HomeCalendar
+    // HomeCalendar
 }
 }
 </script>
@@ -40,15 +40,15 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 5px;
 }
 
-.app-main {
+/* .app-main {
   position: relative;
   max-width: 100%;
-  margin: 0, auto;
-}
+  margin: 0 auto;
+} */
 
 .app-content {
   display: flex;
-  height: 100%;
+  justify-content: space-around;
   padding: 0 6vw;
 }
 </style>
