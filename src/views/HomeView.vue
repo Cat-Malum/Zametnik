@@ -1,50 +1,55 @@
 <template>
-  <main>
-    <top-module
-      :notes="notes"
-      @createNote="addNote"
-    />
+  <main class="wrapper">
+    <div class="left-module">
+      <left-module
+        :notes="notes"
+        @createNote="addNote"
+      />
 
-    <h3 class="title">Список заметок</h3>
-    <div
-      v-show="notes.length"
-      class="note-block"
-    >
-    <transition name="list-wrapper">
-      <transition-group name="list" tag="ul" class="note-block__list">
-        <li
-          v-for="value in notes"
-          :key="value.id"
-          class="note-block__note list-item"
-        >
-          <div
-            class="note-block__left-segment"
-            @click="openText"
+      <h3 class="title">Список заметок</h3>
+      <div
+        v-show="notes.length"
+        class="note-block"
+      >
+      <transition name="list-wrapper">
+        <transition-group name="list" tag="ul" class="note-block__list">
+          <li
+            v-for="value in notes"
+            :key="value.id"
+            class="note-block__note list-item"
           >
-            <h4>{{ value.title }}</h4>
-            <p>{{ value.description }}</p>
-          </div>
-          <div class="note-block__right-segment">
-            <span>{{ formatingDateForNote() }}</span>
-            <button @click="removeNote(value.id)">Удалить</button>
-          </div>
-        </li>
-      </transition-group>
-    </transition>
+            <div
+              class="note-block__left-segment"
+              @click="openText"
+            >
+              <h4>{{ value.title }}</h4>
+              <p>{{ value.description }}</p>
+            </div>
+            <div class="note-block__right-segment">
+              <span>{{ formatingDateForNote() }}</span>
+              <button @click="removeNote(value.id)">Удалить</button>
+            </div>
+          </li>
+        </transition-group>
+      </transition>
+      </div>
+      <div
+        v-show="!notes.length"
+        class="not-notes"
+      >
+        Заметок пока нет
+      </div>
     </div>
-    <div
-      v-show="!notes.length"
-      class="not-notes"
-    >
-      Заметок пока нет
-    </div>
+    
+    <right-module />
   </main>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { formatingDateForNote } from '@/common/helpers'
-import TopModule from './TopModule.vue'
+import LeftModule from './LeftModule.vue'
+import RightModule from './RightModule.vue'
 
 const notes = ref([])
 
@@ -66,59 +71,64 @@ const openText = (event) => {
 <style lang="scss">
 @import '@/assets/scss/mixins/input_button.scss';
 
-main {
-  width: 100%;
-  margin: 0;
-}
-
 button {
   @include button;
 }
 
-.note-block {
-  margin: 15px 0;
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 
-  &__list {
-    display: block;
-    list-style: none;
+  .left-module {
+    width: 100%;
+  }
 
-    span {
-      font-size: 0.8rem;
-      margin-right: 2vw;
+  .note-block {
+    margin: 15px 0;
+
+    &__list {
+      display: block;
+      list-style: none;
+
+      span {
+        font-size: 0.8rem;
+        margin-right: 2vw;
+      }
+    }
+
+    &__note {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @include input;
+      margin-bottom: 5px;
+    }
+
+    &__left-segment {
+      max-width: 70%;
+      cursor: pointer;
+
+      h4, p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 
-  &__note {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    @include input;
-    margin-bottom: 5px;
-  }
-
-  &__left-segment {
-    max-width: 70%;
-    cursor: pointer;
-
-    h4, p {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+  .not-notes {
+    margin: 15px 0;
   }
 }
 
-.not-notes {
-  margin: 15px 0;
-}
-
-.open {
-  h4, p {
-    white-space: normal;
-    overflow-wrap: break-word;
-  }
-}
+// .open {
+//   h4, p {
+//     white-space: normal;
+//     overflow-wrap: break-word;
+//   }
+// }
 
 .list-enter-active,
 .list-leave-active {

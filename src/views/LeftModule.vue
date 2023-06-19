@@ -1,5 +1,5 @@
 <template>
-  <main class="top-modul">
+  <main class="left-module">
     <div class="form">
       <input
         v-model="title"
@@ -15,14 +15,11 @@
         Записать
       </button>
     </div>
-
-    <home-calendar />
   </main>
 </template>
 
 <script setup>
 import { ref, defineEmits } from 'vue'
-import HomeCalendar from '@/views/HomeCalendar.vue'
 
 const emit = defineEmits(['createNote'])
 
@@ -46,21 +43,22 @@ const createNote = () => {
 <style scoped lang="scss">
 @import '@/assets/scss/mixins/input_button.scss';
 
-.top-modul {
+.left-module {
   display: flex;
   justify-content: space-between;
 
   .form {
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: 100%;
-    grid-gap: 5px;
-
-    margin: 0 0 35px;
+    margin: 0 0 5vh;
     width: 100%;
 
     input {
       @include input;
+      display: block;
+      
+      width: 100%;
+      margin-bottom: 5px;
+
+      box-sizing: border-box;
 
       &::placeholder {
         letter-spacing: 0.05rem;
@@ -69,13 +67,22 @@ const createNote = () => {
 
     textarea {
       @include input;
+      display: block;
+
+      width: 100%;
+      min-height: 15vh;
+      margin-bottom: 10px;
+
       resize: vertical;
-      margin-bottom: 1vh;
-      min-height: 10vh;
+      box-sizing: border-box;
 
       &::placeholder {
         letter-spacing: 0.05rem;
       }
+    }
+
+    button {
+      width: 100%;
     }
   }
 }
