@@ -2,19 +2,19 @@
   <main class="wrapper">
     <div class="left-module">
       <left-module
-        :notes="notes"
-        @createNote="addNote"
+        :notes="notesStore.notes"
+        @createNote="notesStore.addNote"
       />
 
       <h3 class="title">Список заметок</h3>
       <div
-        v-show="notes.length"
+        v-show="notesStore.notes.length"
         class="note-block"
       >
       <transition name="list-wrapper">
         <transition-group name="list" tag="ul" class="note-block__list">
           <li
-            v-for="value in notes"
+            v-for="value in notesStore.notes"
             :key="value.id"
             class="note-block__note list-item"
           >
@@ -27,14 +27,14 @@
             </div>
             <div class="note-block__right-segment">
               <span>{{ formatingDateForNote() }}</span>
-              <button @click="removeNote(value.id)">Удалить</button>
+              <button @click="notesStore.removeNote(value.id)">Удалить</button>
             </div>
           </li>
         </transition-group>
       </transition>
       </div>
       <div
-        v-show="!notes.length"
+        v-show="!notesStore.notes.length"
         class="not-notes"
       >
         Заметок пока нет
@@ -46,25 +46,25 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+// import { ref } from 'vue'
 import { formatingDateForNote } from '@/common/helpers'
+import { useNotesStore } from '@/store/notesStore'
 import LeftModule from './LeftModule.vue'
 import RightModule from './RightModule.vue'
 
-const notes = ref([])
+const notesStore = useNotesStore()
 
-const addNote = (note) => {
-  notes.value.push(note)
-}
+// const addNote = (note) => {
+//   notesStore.notes.push(note)
+// }
 
-const removeNote = (id) => {
-  const filteredNotes = notes.value.filter(item => item.id !== id)
-  notes.value = filteredNotes
-}
+// const removeNote = (id) => {
+//   notesStore.notes = notesStore.notes.filter(item => item.id !== id)
+// }
 
 const openText = (event) => {
   const block = event.target.closest('.note-block__left-segment')
-  block.classList.toggle('open')
+  block.classList.toggle('open-text')
 }
 </script>
 
@@ -76,9 +76,8 @@ button {
 }
 
 .wrapper {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 9fr 1fr;
 
   .left-module {
     width: 100%;
@@ -121,14 +120,14 @@ button {
   .not-notes {
     margin: 15px 0;
   }
-}
 
-// .open {
-//   h4, p {
-//     white-space: normal;
-//     overflow-wrap: break-word;
-//   }
-// }
+  .open-text {
+    h4, p {
+      white-space: normal;
+      overflow-wrap: break-word;
+    }
+  }
+}
 
 .list-enter-active,
 .list-leave-active {

@@ -40,15 +40,15 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 5px;
 }
 
-/* .app-main {
+.app-main {
   position: relative;
   max-width: 100%;
   margin: 0 auto;
-} */
+}
 
 .app-content {
-  display: flex;
-  justify-content: space-around;
+  /* display: flex;
+  justify-content: space-around; */
   padding: 0 6vw;
 }
 </style>

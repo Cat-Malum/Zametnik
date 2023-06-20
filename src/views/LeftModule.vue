@@ -23,8 +23,8 @@ import { ref, defineEmits } from 'vue'
 
 const emit = defineEmits(['createNote'])
 
-const title = ref('')
-const description = ref('')
+let title = ref('')
+let description = ref('')
 let counterNotes = ref(0)
 
 const createNote = () => {
