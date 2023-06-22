@@ -47,8 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .app-content {
-  /* display: flex;
-  justify-content: space-around; */
+  display: flex;
   padding: 0 6vw;
 }
 </style>

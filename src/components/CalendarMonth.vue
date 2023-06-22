@@ -24,8 +24,8 @@ const openWindow = () => {
   signal.value = true
 }
 
-const changeSignal = (emit) => {
-  signal.value = emit
+const changeSignal = (status) => {
+  signal.value = status
 }
 </script>
 

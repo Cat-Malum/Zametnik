@@ -24,7 +24,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['modalOpen'])
+const emit = defineEmits(['modalClose'])
 
 let statusWindow = true
 
