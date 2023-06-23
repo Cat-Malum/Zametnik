@@ -38,17 +38,15 @@ button {
   }
 
   &__note {
+    @include input;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    @include input;
     margin-bottom: 5px;
   }
 
   &__left-segment {
     max-width: 70%;
-    box-sizing: border-box;
     cursor: pointer;
 
     h4, p {

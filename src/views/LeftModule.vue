@@ -31,7 +31,7 @@
             <div
               class="note-block__left-segment"
               @click="openText"
-              v-if="!editingNote"
+              v-if="!value.editingNote"
             >
               <h4>{{ value.title }}</h4>
               <p>{{ value.description }}</p>
@@ -54,12 +54,14 @@
             <div class="note-block__right-segment">
               <span>{{ formatingDateForNote() }}</span>
               <button
+                class="render-button"
                 @click="editNote(value.id)"
                 v-if="!value.editingNote"
               >
                 Изменить
               </button>
               <button
+                class="render-button"
                 @click="endEditingNote(value.id)"
                 v-else  
               >
@@ -93,6 +95,7 @@ let counterNotes = ref(0)
 let editingNote = ref(false)
 let currentTitle = ref('')
 let currentDescription = ref('')
+let note = ref('')
 
 const createNote = () => {
   if (title.value !== '' && description.value !== '') {
@@ -117,23 +120,19 @@ const openText = (event) => {
 }
 
 const editNote = (id) => {
-  const note = notesStore.notes[id]
+  note.value = notesStore.notes.find(elem => elem.id === id)
 
-  note.editingNote = true
-  console.log(note)
-  console.log(notesStore.notes)
+  note.value.editingNote = true
 
-  currentTitle.value = note.title
-  currentDescription.value = note.description
+  currentTitle.value = note.value.title
+  currentDescription.value = note.value.description
 }
 
-const endEditingNote = (id) => {
-  const note = notesStore.notes[id]
+const endEditingNote = () => {
+  note.value.title = currentTitle.value
+  note.value.description = currentDescription.value
 
-  note.title = currentTitle.value
-  note.description = currentDescription.value
-
-  note.editingNote = false
+  note.value.editingNote = false
 }
 </script>
 
@@ -148,11 +147,8 @@ const endEditingNote = (id) => {
     input {
       @include input;
       display: block;
-      
       width: 100%;
       margin-bottom: 5px;
-
-      box-sizing: border-box;
 
       &::placeholder {
         letter-spacing: 0.05rem;
@@ -168,7 +164,6 @@ const endEditingNote = (id) => {
       margin-bottom: 10px;
 
       resize: vertical;
-      box-sizing: border-box;
 
       &::placeholder {
         letter-spacing: 0.05rem;
@@ -201,7 +196,6 @@ const endEditingNote = (id) => {
 
     &__left-segment {
       max-width: 70%;
-      box-sizing: border-box;
       cursor: pointer;
 
       h4, p {
@@ -209,6 +203,23 @@ const endEditingNote = (id) => {
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
+      input, textarea {
+        @include input;
+        display: block;
+      }
+
+      input {
+        margin-bottom: 5px;
+      }
+
+      textarea {
+        min-width: 100%;
+      }
+    }
+
+    .render-button {
+      margin-right: 10px;
     }
   }
 

@@ -3,7 +3,6 @@
     <home-header />
     <div class="app-content">
       <home-view />
-      <!-- <home-calendar /> -->
     </div>
   </main>
 </template>
@@ -11,23 +10,22 @@
 <script>
 import HomeHeader from './views/HomeHeader.vue'
 import HomeView from './views/HomeView.vue'
-// import HomeCalendar from './views/HomeCalendar.vue'
 
 export default {
   name: 'App',
   components: {
     HomeHeader,
-    HomeView,
-    // HomeCalendar
+    HomeView
 }
 }
 </script>
 
 <style>
-* {
+*, *::before, *::after {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }

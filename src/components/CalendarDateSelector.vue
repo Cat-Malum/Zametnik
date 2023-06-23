@@ -40,7 +40,6 @@ const selectNext = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   margin: 0.5vh 0 1.5vh;
 }
 

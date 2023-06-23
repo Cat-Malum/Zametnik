@@ -25,7 +25,7 @@ export const getStartWeekday = (date) => {
   date.setDate(1);
 
   const weekdayIndex = getWeekdayIndex(date);
-  console.log(weekdayIndex)
+  
   return weekdayIndex;
 }
 
