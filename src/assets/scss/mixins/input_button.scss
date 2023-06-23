@@ -1,5 +1,5 @@
 @mixin input {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
   border: 1px solid #bdbdbd;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -7,9 +7,9 @@
   &:focus {
     color: #212529;
     background-color: #fff;
-    border-color: #bdbdbd;
+    border-color: #c6ecff;
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+    box-shadow: 0 0 0 0.075rem rgb(130, 236, 255);
   }
 }
 
@@ -21,9 +21,14 @@
   font-size: 0.8rem;
   letter-spacing: 0.08rem;
   text-transform: uppercase;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
   &:hover {
-    color: #fff;
-    background-color: #bdbdbd;
+    background-color: #c6ecff;
+    border-color: #c6ecff;
+  }
+
+  &:active {
+    background-color: #78d0fc;
   }
 }
