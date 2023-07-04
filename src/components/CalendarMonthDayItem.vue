@@ -62,20 +62,21 @@ const props = defineProps({
   align-items: center;
   margin: 5px;
   padding: 10px;
-  background-color: #fff;
+  background-color: #292929;
   border-radius: 100%;
   grid-column-start: var(--start-from);
 
   &:hover {
-    outline: 1px solid orange;
+    outline: 1px solid #dddbdb;
   }
 
   &__not-current {
-    color: rgba($color: #000000, $alpha: 0.2);
+    color: rgba($color: #dddbdb, $alpha: 0.2);
   }
 
   &__today {
-    background-color: orange;
+    color: #292929;
+    background-color: #dddbdb;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <main class="left-module">
+  <div class="left-module">
     <div class="form">
       <input
         v-model="title"
@@ -79,7 +79,7 @@
     >
       Заметок пока нет
     </div>
-  </main>
+  </div>
 </template>
 
 <script setup>
@@ -142,13 +142,12 @@ const endEditingNote = () => {
 .left-module {
   .form {
     margin: 0 0 5vh;
-    width: 100%;
 
     input {
       @include input;
       display: block;
       width: 100%;
-      margin-bottom: 5px;
+      margin-bottom: 1vh;
 
       &::placeholder {
         letter-spacing: 0.05rem;
@@ -158,12 +157,9 @@ const endEditingNote = () => {
     textarea {
       @include input;
       display: block;
-
       width: 100%;
       min-height: 15vh;
-      margin-bottom: 10px;
-
-      resize: vertical;
+      margin-bottom: 2vh;
 
       &::placeholder {
         letter-spacing: 0.05rem;
@@ -176,8 +172,6 @@ const endEditingNote = () => {
   }
 
   .note-block {
-    margin: 15px 0;
-
     &__list {
       span {
         font-size: 0.8rem;
@@ -189,32 +183,39 @@ const endEditingNote = () => {
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      @include input;
-      margin-bottom: 5px;
+      margin: 15px 0;
+      padding: 0.5rem 1rem;
+      border: 1px solid #dddbdb;
+      border-radius: 5px;
     }
 
     &__left-segment {
+      min-width: 50%;
       max-width: 70%;
       cursor: pointer;
 
+      h4 {
+        margin-bottom: 10px;
+      }
+
       h4, p {
         white-space: nowrap;
-        overflow: hidden;
+        overflow-x: hidden;
         text-overflow: ellipsis;
       }
 
       input, textarea {
         @include input;
         display: block;
+        width: 100%;
       }
 
       input {
-        margin-bottom: 5px;
+        margin-bottom: 1vh;
       }
 
       textarea {
-        min-width: 100%;
+        min-height: 30px;
       }
     }
 

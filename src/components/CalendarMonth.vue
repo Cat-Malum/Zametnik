@@ -1,6 +1,6 @@
 <template>
   <button
-    class="calendarOpenButton"
+    class="calendar__open-button"
     @click="openWindow"
     v-if="!signal"
   >

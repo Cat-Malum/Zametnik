@@ -1,34 +1,46 @@
 @mixin input {
-  padding: 0.5rem 0.5rem;
-  border: 1px solid #bdbdbd;
-  border-radius: 0.25rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  padding: 0.5rem 1rem;
+  border: 1px solid #dddbdb;
+  border-radius: 5px;
+  transition: box-shadow 0.15s ease-in-out;
+  color: #dddbdb;
+  background-color: #292929;
+  resize: vertical;
+
+  &::placeholder {
+    color: #dddbdb;
+  }
 
   &:focus {
-    color: #212529;
-    background-color: #fff;
-    border-color: #c6ecff;
+    color: #292929;
+    background-color: #dddbdb;
+    box-shadow:  0 0 20px 1px #fff;
     outline: 0;
-    box-shadow: 0 0 0 0.075rem rgb(130, 236, 255);
+
+    &::placeholder {
+      color: #292929;
+    }
   }
 }
 
 @mixin button {
   padding: 0.5rem 1rem;
-  background-color: #fff;
-  border: 1px solid #bdbdbd;
-  border-radius: 0.25rem;
+  color: #dddbdb;
+  background-color: #292929;
+  border: 1px solid #dddbdb;
+  border-radius: 5px;
   font-size: 0.8rem;
   letter-spacing: 0.08rem;
   text-transform: uppercase;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out;
 
   &:hover {
-    background-color: #c6ecff;
-    border-color: #c6ecff;
+    color: #292929;
+    background-color: #dddbdb;
   }
 
   &:active {
-    background-color: #78d0fc;
+    background-color: #fff;
+    box-shadow:  0 0 20px 1px #fff;
   }
 }

@@ -126,8 +126,8 @@ li {
 .modal-window {
   height: auto;
   padding: 10px 5px 10px 15px;
-  background-color: #fff;
-  border: 1px solid lightslategray;
+  background-color: #292929;
+  border: 1px solid #dddbdb;
   border-radius: 5px;
 }
 

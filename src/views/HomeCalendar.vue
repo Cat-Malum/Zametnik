@@ -1,7 +1,7 @@
 <template>
-  <main class="calendar">
+  <div class="calendar">
     <calendar-month />
-  </main>
+  </div>
 </template>
 
 <script setup>
