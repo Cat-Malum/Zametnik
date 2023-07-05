@@ -38,6 +38,12 @@ const close = () => {
 .modal-window-opened {
   display: flex;
   justify-content: center;
+
+  //перенести в компонент календаря
+  position: absolute;
+  top: 2vh;
+  right: 0;
+  z-index: 10;
 }
 
 .close-window-button {

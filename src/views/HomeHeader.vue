@@ -1,8 +1,10 @@
 <template>
   <div class="header">
-    <h1 class="title title--main">Заметник</h1>
+    <div class="header__wrapper">
+      <h1 class="header__title title--main">Заметник</h1>
 
-    <right-module class="right-module"/>
+      <right-module class="right-module"/>
+    </div>
   </div>
 </template>
 
@@ -12,11 +14,26 @@ import RightModule from './RightModule.vue';
 
 <style scoped lang="scss">
 .header {
-  display: flex;
-  justify-content: center;
-  padding: 2vh 0;
   margin-bottom: 3vh;
-  background-color: #d49304;
-  color: #292929;
+  background-color: #343434;
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh 10px;
+    max-width: 1220px;
+    margin: 0 auto;
+
+    .right-module {
+      color: #fff;
+      justify-self: end;
+    }
+  }
+
+  &__title {
+    justify-self: center;
+  }
 }
 </style>

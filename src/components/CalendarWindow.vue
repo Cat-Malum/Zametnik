@@ -129,20 +129,20 @@ li {
   background-color: #292929;
   border: 1px solid #dddbdb;
   border-radius: 5px;
-}
 
-.calendar-month {
-  height: auto;
-}
+  .calendar-month {
+    height: auto;
 
-.day-of-week,
-.days-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  
-  &::-webkit-scrollbar {
-    width: 0;
+    .day-of-week,
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+    }
   }
 }
 
