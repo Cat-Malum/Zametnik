@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue'
+import { defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
   signal: {
@@ -22,16 +22,16 @@ const props = defineProps({
     required: true,
     default: false
   }
-})
+});
 
-const emit = defineEmits(['modalClose'])
+const emit = defineEmits(['modalClose']);
 
-let statusWindow = true
+let statusWindow = true;
 
 const close = () => {
-  statusWindow = false
-  emit('modalClose', statusWindow)
-}
+  statusWindow = false;
+  emit('modalClose', statusWindow);
+};
 </script>
 
 <style scoped lang="scss">
@@ -44,9 +44,9 @@ const close = () => {
   top: 2vh;
   right: 0;
   z-index: 10;
-}
 
-.close-window-button {
-  margin-left: 15px;
+  .close-window-button {
+    margin-left: 15px;
+  }
 }
 </style>

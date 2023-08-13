@@ -21,7 +21,7 @@ export const useNotesStore = defineStore('notesStore', () => {
     () => notes,
     (state) => {
       localStorage.setItem('notes', JSON.stringify(state));
-  }, {deep: true})
+  }, {deep: true});
   
   return {
     notes,

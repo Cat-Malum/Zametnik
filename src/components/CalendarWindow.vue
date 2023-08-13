@@ -35,32 +35,33 @@
 </template>
 
 <script setup>
-import { computed, ref, defineProps, defineEmits } from 'vue'
-import CalendarDateSelector from './CalendarDateSelector.vue'
-import CalendarWeekdays from './CalendarWeekdays.vue'
-import CalendarMonthDayItem from './CalendarMonthDayItem.vue'
-import ModalWindow from './ModalWindow.vue'
-import { getNumberOfDaysInMonth, getWeekdayIndex } from '@/common/helpers'
+import { computed, ref, defineProps, defineEmits } from 'vue';
+import CalendarDateSelector from './CalendarDateSelector.vue';
+import CalendarWeekdays from './CalendarWeekdays.vue';
+import CalendarMonthDayItem from './CalendarMonthDayItem.vue';
+import ModalWindow from './ModalWindow.vue';
+import { getNumberOfDaysInMonth, getWeekdayIndex } from '@/common/helpers';
 
 const props = defineProps({
   signal: {
     type: Boolean,
-    required: true
+    required: true,
+    default: false
   }
-})
+});
 
-const emit = defineEmits(['dropSignal'])
+const emit = defineEmits(['dropSignal']);
 
-const today = `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`
-let selectedDate = ref(new Date())
+const today = `${new Date().getDate()}.${new Date().getMonth() + 1}.${new Date().getFullYear()}`;
+let selectedDate = ref(new Date());
 
 const selectDate = (newSelectedDate) => {
-  selectedDate.value = new Date(newSelectedDate)
-}
+  selectedDate.value = new Date(newSelectedDate);
+};
 
 const previousMonth = computed(() => {
-  return new Date(new Date().setMonth(selectedDate.value.getMonth() - 1))
-})
+  return new Date(new Date().setMonth(selectedDate.value.getMonth() - 1));
+});
 
 const currentMonthDays = computed(() => {
   return [...Array(getNumberOfDaysInMonth(selectedDate.value))].map((day, index) => {
@@ -68,14 +69,14 @@ const currentMonthDays = computed(() => {
       date: `${index + 1}.${selectedDate.value.getMonth() + 1}.${selectedDate.value.getFullYear()}`,
       dayNumber: `${index + 1}`,
       isCurrentMonth: true
-    }
-  })
-})
+    };
+  });
+});
 
 const previousMonthDays = computed(() => {
-  const firstWeekdayCurrentMonth = getWeekdayIndex(new Date(new Date(selectedDate.value).setMonth(selectedDate.value.getMonth(), 1)))
-  const visibleDaysPreviousMonth = [...Array(firstWeekdayCurrentMonth - 1)]
-  const discardedDays = getNumberOfDaysInMonth(previousMonth.value) - firstWeekdayCurrentMonth + 1
+  const firstWeekdayCurrentMonth = getWeekdayIndex(new Date(new Date(selectedDate.value).setMonth(selectedDate.value.getMonth(), 1)));
+  const visibleDaysPreviousMonth = [...Array(firstWeekdayCurrentMonth - 1)];
+  const discardedDays = getNumberOfDaysInMonth(previousMonth.value) - firstWeekdayCurrentMonth + 1;
 
   return visibleDaysPreviousMonth.map((day, index) => {
     return {
@@ -83,13 +84,13 @@ const previousMonthDays = computed(() => {
       dayNumber: `${index + discardedDays + 1}`,
       isCurrentMonth: false,
       previousMonth: true
-    }
-  })
-})
+    };
+  });
+});
 
 const nextMonthDays = computed(() => {
-  const firstWeekdayNextMonth = getWeekdayIndex(new Date(new Date(selectedDate.value).setMonth(selectedDate.value.getMonth() + 1, 1)))
-  const visibleDaysNextMonth = [...Array(8 - firstWeekdayNextMonth)]
+  const firstWeekdayNextMonth = getWeekdayIndex(new Date(new Date(selectedDate.value).setMonth(selectedDate.value.getMonth() + 1, 1)));
+  const visibleDaysNextMonth = [...Array(8 - firstWeekdayNextMonth)];
 
   return visibleDaysNextMonth.map((day, index) => {
     return {
@@ -97,25 +98,25 @@ const nextMonthDays = computed(() => {
       dayNumber: `${index + 1}`,
       isCurrentMonth: false,
       nextMonth: true
-    }
-  })
-})
+    };
+  });
+});
 
 const days = computed(() => {
   return [
     ...previousMonthDays.value,
     ...currentMonthDays.value,
     ...nextMonthDays.value
-  ]
-})
+  ];
+});
 
-const firstDayPreviousMonth = previousMonthDays.value[0]
+const firstDayPreviousMonth = previousMonthDays.value[0];
 
 const closeWindow = (signal) => {
   if (!signal) {
-    emit('dropSignal', false)
+    emit('dropSignal', false);
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -124,11 +125,16 @@ li {
 }
 
 .modal-window {
-  height: auto;
+  position: absolute;
+  margin: 0 auto;
+  top: 25%;
+  left: 0;
+  max-width: 425px;
   padding: 10px 5px 10px 15px;
   background-color: #292929;
   border: 1px solid #dddbdb;
   border-radius: 5px;
+  z-index: 15;
 
   .calendar-month {
     height: auto;

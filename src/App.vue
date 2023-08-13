@@ -16,22 +16,21 @@ export default {
   components: {
     HomeHeader,
     HomeView
-}
+  }
 }
 </script>
 
 <style>
 *, *::before, *::after {
   font-family: Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 html {
-  overflow-y: overlay;
+  overflow-x: hidden;
+  width:100vw;
 }
 
 body {
@@ -40,14 +39,18 @@ body {
   background-color: #292929;
 }
 
+/* main {
+  position: relative;
+} */
+
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: 5px;
 }
 
 .app-content {
-  display: flex;
   max-width: 1220px;
-  padding: 0 10px;
+  padding: 0 10px 40px;
   margin: 0 auto;
+  height: 100%;
 }
 </style>

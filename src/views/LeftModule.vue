@@ -53,21 +53,28 @@
             </div>
             <div class="note-block__right-segment">
               <span>{{ formatingDateForNote() }}</span>
-              <button
-                class="render-button"
-                @click="editNote(value.id)"
-                v-if="!value.editingNote"
-              >
-                Изменить
-              </button>
-              <button
-                class="render-button"
-                @click="endEditingNote(value.id)"
-                v-else  
-              >
-                Применить
-              </button>
-              <button @click="notesStore.removeNote(value.id)">Удалить</button>
+              <div class="buttons-block">
+                <button
+                  class="render-button render-buttom--top"
+                  @click="editNote(value.id)"
+                  v-if="!value.editingNote"
+                >
+                  Изменить
+                </button>
+                <button
+                  class="render-button render-buttom--top"
+                  @click="endEditingNote(value.id)"
+                  v-else  
+                >
+                  Применить
+                </button>
+                <button
+                  class="render-button"
+                  @click="notesStore.removeNote(value.id)"
+                >
+                  Удалить
+                </button>
+              </div>
             </div>
           </li>
         </transition-group>
@@ -172,13 +179,6 @@ const endEditingNote = () => {
   }
 
   .note-block {
-    &__list {
-      span {
-        font-size: 0.8rem;
-        margin-right: 2vw;
-      }
-    }
-
     &__note {
       display: flex;
       justify-content: space-between;
@@ -192,6 +192,7 @@ const endEditingNote = () => {
     &__left-segment {
       min-width: 50%;
       max-width: 70%;
+      margin-right: 15px;
       cursor: pointer;
 
       h4 {
@@ -219,8 +220,21 @@ const endEditingNote = () => {
       }
     }
 
-    .render-button {
-      margin-right: 10px;
+    &__right-segment {
+      display: flex;
+      align-items: center;
+      min-width: 316px;
+
+      span {
+        font-size: 0.8rem;
+        margin-right: 2vw;
+      }
+
+      .buttons-block {
+        .render-button {
+          margin-right: 10px;
+        }
+      }
     }
   }
 
@@ -232,6 +246,59 @@ const endEditingNote = () => {
     h4, p {
       white-space: normal;
       overflow-wrap: break-word;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .note-block__left-segment {
+      max-width: 50%;
+    }
+
+    .note-block__right-segment {
+      min-width: 0;
+      width: 192px;
+
+      .buttons-block {
+        flex-direction: column;
+        justify-content: end;
+
+        .render-button {
+          width: 100%;
+        }
+
+        .render-buttom--top {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 470px) {
+    .note-block {
+      .list-item {
+        display: block;
+      }
+
+      &__left-segment {
+        max-width: 100%;
+      }
+
+      &__right-segment {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      span {
+        display: none;
+      }
+
+      .buttons-block {
+        .render-button {
+          margin-right: 10px;
+        }
+      }
     }
   }
 }

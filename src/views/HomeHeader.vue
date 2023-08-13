@@ -3,13 +3,24 @@
     <div class="header__wrapper">
       <h1 class="header__title title--main">Заметник</h1>
 
-      <right-module class="right-module"/>
+      <button
+        class="calendar__open-button"
+        @click="openCalendar"
+      >
+        Kалендарь
+      </button>
     </div>
   </div>
 </template>
 
 <script setup>
-import RightModule from './RightModule.vue';
+import { useSignalsStore } from '@/store/signalsStore';
+
+const signalsStore = useSignalsStore();
+
+const openCalendar = () => {
+  signalsStore.changeSignalForCalendar();
+};
 </script>
 
 <style scoped lang="scss">

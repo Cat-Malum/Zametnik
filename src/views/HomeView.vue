@@ -1,19 +1,19 @@
 <template>
-  <div class="left-wrapper">
+  <div class="left-module">
     <left-module
       @createNote="notesStore.addNote"
     />
   </div>
-  
-  <!-- <right-module /> -->
+
+  <home-calendar />
 </template>
 
 <script setup>
-import { useNotesStore } from '@/store/notesStore'
-import LeftModule from './LeftModule.vue'
-// import RightModule from './RightModule.vue'
+import { useNotesStore } from '@/store/notesStore';
+import LeftModule from './LeftModule.vue';
+import HomeCalendar from './HomeCalendar.vue';
 
-const notesStore = useNotesStore()
+const notesStore = useNotesStore();
 </script>
 
 <style lang="scss">
@@ -23,7 +23,7 @@ button {
   @include button;
 }
 
-.left-wrapper {
+.left-module {
   width: 100%;
 }
 </style>
