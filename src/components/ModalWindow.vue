@@ -1,6 +1,6 @@
 <template>
   <div
-    class="modal-window-opened"
+    class="modal-window__opened"
     v-if="props.signal"
   >
     <slot />
@@ -35,18 +35,22 @@ const close = () => {
 </script>
 
 <style scoped lang="scss">
-.modal-window-opened {
+.modal-window__opened {
   display: flex;
   justify-content: center;
-
-  //перенести в компонент календаря
-  position: absolute;
-  top: 2vh;
-  right: 0;
-  z-index: 10;
 
   .close-window-button {
     margin-left: 15px;
   }
+}
+
+.window__open {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  z-index: 5;
 }
 </style>

@@ -21,64 +21,62 @@
       v-show="notesStore.notes.length"
       class="note-block"
     >
-      <transition name="list-wrapper">
-        <transition-group name="list" tag="ul" class="note-block__list">
-          <li
-            v-for="value in notesStore.notes"
-            :key="value.id"
-            class="note-block__note list-item"
+      <transition-group name="list" tag="ul" class="note-block__list">
+        <li
+          v-for="value in notesStore.notes"
+          :key="value.id"
+          class="note-block__note list-item"
+        >
+          <div
+            class="note-block__left-segment"
+            @click="openText"
+            v-if="!value.editingNote"
           >
-            <div
-              class="note-block__left-segment"
-              @click="openText"
-              v-if="!value.editingNote"
+            <h4>{{ value.title }}</h4>
+            <p>{{ value.description }}</p>
+          </div>
+          <div
+            class="note-block__left-segment"
+            v-else
+          >
+            <input
+              v-model="currentTitle"
+              type="text"
+              placeholder="Название"
             >
-              <h4>{{ value.title }}</h4>
-              <p>{{ value.description }}</p>
-            </div>
-            <div
-              class="note-block__left-segment"
-              v-else
-            >
-              <input
-                v-model="currentTitle"
-                type="text"
-                placeholder="Название"
+            <textarea
+              v-model="currentDescription"
+              type="text"
+              placeholder="Описание"
+            ></textarea>
+          </div>
+          <div class="note-block__right-segment">
+            <span>{{ formatingDateForNote() }}</span>
+            <div class="buttons-block">
+              <button
+                class="render-button render-buttom--top"
+                @click="editNote(value.id)"
+                v-if="!value.editingNote"
               >
-              <textarea
-                v-model="currentDescription"
-                type="text"
-                placeholder="Описание"
-              ></textarea>
+                Изменить
+              </button>
+              <button
+                class="render-button render-buttom--top"
+                @click="endEditingNote(value.id)"
+                v-else  
+              >
+                Применить
+              </button>
+              <button
+                class="render-button"
+                @click="openWindowDel(value.id)"
+              >
+                Удалить
+              </button>
             </div>
-            <div class="note-block__right-segment">
-              <span>{{ formatingDateForNote() }}</span>
-              <div class="buttons-block">
-                <button
-                  class="render-button render-buttom--top"
-                  @click="editNote(value.id)"
-                  v-if="!value.editingNote"
-                >
-                  Изменить
-                </button>
-                <button
-                  class="render-button render-buttom--top"
-                  @click="endEditingNote(value.id)"
-                  v-else  
-                >
-                  Применить
-                </button>
-                <button
-                  class="render-button"
-                  @click="notesStore.removeNote(value.id)"
-                >
-                  Удалить
-                </button>
-              </div>
-            </div>
-          </li>
-        </transition-group>
-      </transition>
+          </div>
+        </li>
+      </transition-group>
     </div>
     <div
       v-show="!notesStore.notes.length"
@@ -86,23 +84,37 @@
     >
       Заметок пока нет
     </div>
+
+    <window-for-delete
+      :id="prop"
+      v-if="signalsStore.signalForDeleteBtn"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { formatingDateForNote } from '@/common/helpers'
-import { useNotesStore } from '@/store/notesStore'
+import { ref } from 'vue';
+import { formatingDateForNote } from '@/common/helpers';
+import { useNotesStore } from '@/store/notesStore';
+import { useSignalsStore } from '@/store/signalsStore';
+import WindowForDelete from '@/components/WindowForDelete.vue';
 
-const notesStore = useNotesStore()
+const notesStore = useNotesStore();
+const signalsStore = useSignalsStore();
+const prop = ref()
 
-let title = ref('')
-let description = ref('')
-let counterNotes = ref(0)
-let editingNote = ref(false)
-let currentTitle = ref('')
-let currentDescription = ref('')
-let note = ref('')
+const openWindowDel = (id) => {
+  prop.value = id;
+  signalsStore.changeSignalForDeleteBtn();
+};
+
+let title = ref('');
+let description = ref('');
+let counterNotes = ref(0);
+let editingNote = ref(false);
+let currentTitle = ref('');
+let currentDescription = ref('');
+let note = ref('');
 
 const createNote = () => {
   if (title.value !== '' && description.value !== '') {
@@ -111,36 +123,37 @@ const createNote = () => {
       title: title.value,
       description: description.value,
       editingNote: editingNote.value
-    })
-    counterNotes.value++
+    });
 
-    title.value = ''
-    description.value = ''
+    counterNotes.value++;
+
+    title.value = '';
+    description.value = '';
   } else {
-    alert('Введите все значения')
+    alert('Введите все значения');
   }
-}
+};
 
 const openText = (event) => {
-  const block = event.target.closest('.note-block__left-segment')
-  block.classList.toggle('open-text')
-}
+  const block = event.target.closest('.note-block__left-segment');
+  block.classList.toggle('open-text');
+};
 
 const editNote = (id) => {
-  note.value = notesStore.notes.find(elem => elem.id === id)
+  note.value = notesStore.notes.find(elem => elem.id === id);
 
-  note.value.editingNote = true
+  note.value.editingNote = true;
 
-  currentTitle.value = note.value.title
-  currentDescription.value = note.value.description
-}
+  currentTitle.value = note.value.title;
+  currentDescription.value = note.value.description;
+};
 
 const endEditingNote = () => {
-  note.value.title = currentTitle.value
-  note.value.description = currentDescription.value
+  note.value.title = currentTitle.value;
+  note.value.description = currentDescription.value;
 
-  note.value.editingNote = false
-}
+  note.value.editingNote = false;
+};
 </script>
 
 <style scoped lang="scss">

@@ -3,14 +3,14 @@ import { ref } from 'vue';
 
 export const useSignalsStore = defineStore('signalsStore', () => {
   const signalForCalendar = ref(false);
-  const signalForDeletBtn = ref(false);
+  const signalForDeleteBtn = ref(false);
 
   const changeSignalForCalendar = () => signalForCalendar.value = !signalForCalendar.value;
-  const changeSignalForDeleteBtn = () => signalForDeletBtn.value = !signalForDeletBtn.value;
+  const changeSignalForDeleteBtn = () => signalForDeleteBtn.value = !signalForDeleteBtn.value;
 
   return {
     signalForCalendar,
-    signalForDeletBtn,
+    signalForDeleteBtn,
     changeSignalForCalendar,
     changeSignalForDeleteBtn
   };

@@ -126,9 +126,11 @@ li {
 
 .modal-window {
   position: absolute;
-  margin: 0 auto;
-  top: 25%;
+  margin-left: auto;
+  margin-right: auto;
   left: 0;
+  right: 0;
+  top: 25%;
   max-width: 425px;
   padding: 10px 5px 10px 15px;
   background-color: #292929;
