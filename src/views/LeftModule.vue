@@ -89,6 +89,10 @@
       :id="prop"
       v-if="signalsStore.signalForDeleteBtn"
     />
+
+    <window-alert 
+      v-if="signalsStore.signalForAlertWindow"
+    />
   </div>
 </template>
 
@@ -97,40 +101,32 @@ import { ref } from 'vue';
 import { formatingDateForNote } from '@/common/helpers';
 import { useNotesStore } from '@/store/notesStore';
 import { useSignalsStore } from '@/store/signalsStore';
+import { generateId } from '@/common/helpers';
 import WindowForDelete from '@/components/WindowForDelete.vue';
+import WindowAlert from '@/components/WindowAlert.vue';
 
 const notesStore = useNotesStore();
 const signalsStore = useSignalsStore();
-const prop = ref()
 
-const openWindowDel = (id) => {
-  prop.value = id;
-  signalsStore.changeSignalForDeleteBtn();
-};
-
-let title = ref('');
-let description = ref('');
-let counterNotes = ref(0);
-let editingNote = ref(false);
-let currentTitle = ref('');
-let currentDescription = ref('');
-let note = ref('');
+const title = ref('');
+const description = ref('');
+const currentTitle = ref('');
+const currentDescription = ref('');
+const note = ref('');
+let prop = null;
 
 const createNote = () => {
   if (title.value !== '' && description.value !== '') {
     notesStore.addNote({
-      id: counterNotes.value,
+      id: generateId(),
       title: title.value,
-      description: description.value,
-      editingNote: editingNote.value
+      description: description.value
     });
-
-    counterNotes.value++;
 
     title.value = '';
     description.value = '';
   } else {
-    alert('Введите все значения');
+    signalsStore.changeSignalForAlertWindow();
   }
 };
 
@@ -153,6 +149,11 @@ const endEditingNote = () => {
   note.value.description = currentDescription.value;
 
   note.value.editingNote = false;
+};
+
+const openWindowDel = (id) => {
+  prop = id;
+  signalsStore.changeSignalForDeleteBtn();
 };
 </script>
 
@@ -229,7 +230,7 @@ const endEditingNote = () => {
       }
 
       textarea {
-        min-height: 30px;
+        min-height: 100px;
       }
     }
 

@@ -131,8 +131,8 @@ li {
   left: 0;
   right: 0;
   top: 25%;
-  max-width: 425px;
-  padding: 10px 5px 10px 15px;
+  max-width: 450px;
+  padding: 15px 5px 15px;
   background-color: #292929;
   border: 1px solid #dddbdb;
   border-radius: 5px;
@@ -140,6 +140,7 @@ li {
 
   .calendar-month {
     height: auto;
+    margin-right: 25px;
 
     .day-of-week,
     .days-grid {

@@ -10,7 +10,7 @@
       class="modal-window"
     >
       <div class="window-for-delete__inner">
-        <p class="window-for-delete__text">Вы уверены, что хотите удалить заметку?</p>
+        <h3 class="window-for-delete__text">Вы уверены, что хотите удалить заметку?</h3>
 
         <div class="window-for-delete__buttons">
           <button
@@ -37,7 +37,7 @@ import { defineProps } from 'vue';
 
 const props = defineProps({
   id: {
-    type: Number,
+    type: String,
     required: true
   }
 });
@@ -69,8 +69,8 @@ const deleteNoteAndClose = (id) => {
     background-color: rgba($color: #000000, $alpha: 0.5);
     z-index: 5;
 
-    p {
-      margin-right: 15px;
+    h3 {
+      margin-right: 30px;
     }
 
     .modal-window {
@@ -80,8 +80,8 @@ const deleteNoteAndClose = (id) => {
       left: 0;
       right: 0;
       top: 35%;
-      max-width: 425px;
-      height: 117px;
+      max-width: 540px;
+      height: 135px;
       padding: 20px 0;
       background-color: #292929;
       border: 1px solid #dddbdb;
@@ -92,7 +92,7 @@ const deleteNoteAndClose = (id) => {
     .window-for-delete__buttons {
       display: flex;
       justify-content: space-between;
-      margin: 25px auto 0;
+      margin: 35px auto 0;
       max-width: 220px;
 
       button {

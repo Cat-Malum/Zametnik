@@ -38,10 +38,6 @@ const close = () => {
 .modal-window__opened {
   display: flex;
   justify-content: center;
-
-  .close-window-button {
-    margin-left: 15px;
-  }
 }
 
 .window__open {
