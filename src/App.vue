@@ -39,17 +39,13 @@ body {
   background-color: #292929;
 }
 
-/* main {
-  position: relative;
-} */
-
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: 5px;
 }
 
 .app-content {
   max-width: 1220px;
-  padding: 0 10px 40px;
+  padding: 0 20px 40px;
   margin: 0 auto;
   height: 100%;
 }

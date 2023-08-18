@@ -263,6 +263,20 @@ const openWindowDel = (id) => {
     }
   }
 
+  .list-enter-active {
+    transition: all 0.4s ease-out;
+  }
+
+  .list-leave-active {
+    transition: all 0.3s ease-out;
+  }
+
+  .list-enter-from,
+  .list-leave-to {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+
   @media screen and (max-width: 700px) {
     .note-block__left-segment {
       max-width: 50%;

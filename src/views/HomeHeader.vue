@@ -33,7 +33,7 @@ const openCalendar = () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2vh 10px;
+    padding: 2vh 20px;
     max-width: 1220px;
     margin: 0 auto;
 

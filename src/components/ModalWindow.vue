@@ -1,16 +1,13 @@
 <template>
-  <div
-    class="modal-window__opened"
-    v-if="props.signal"
-  >
-    <slot />
-    <button 
-      class="close-window-button" 
-      @click="close"
+  <transition name="slide-fade">
+    <div 
+      class="shadow-outside"
+      @click="closeClickOnOutside"
+      v-if="props.signal"  
     >
-      X
-    </button>
-  </div>
+      <slot />
+    </div>
+  </transition>
 </template>
 
 <script setup>
@@ -32,15 +29,16 @@ const close = () => {
   statusWindow = false;
   emit('modalClose', statusWindow);
 };
+
+const closeClickOnOutside = (event) => {
+  if (event.target.classList.contains('shadow-outside')) {
+    close();
+  }
+};
 </script>
 
 <style scoped lang="scss">
-.modal-window__opened {
-  display: flex;
-  justify-content: center;
-}
-
-.window__open {
+.shadow-outside {
   position: absolute;
   top: 0;
   left: 0;
@@ -48,5 +46,19 @@ const close = () => {
   height: 100%;
   background-color: rgba($color: #000000, $alpha: 0.5);
   z-index: 5;
+}
+
+.slide-fade-enter-active {
+  transition: all 0.4s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(-20px);
+  opacity: 0;
 }
 </style>

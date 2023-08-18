@@ -1,10 +1,9 @@
 <template>
-  <transition name="slide-fade">
-    <ModalWindow
-      :signal="props.signal"
-      @modalClose="closeWindow"
-      class="modal-window"
-    >
+  <ModalWindow
+    :signal="props.signal"
+    @modalClose="closeWindow"
+  >
+    <div class="calendar-window">
       <div class="calendar-month">
         <div class="calendar-month-header">
           <CalendarDateSelector
@@ -30,8 +29,14 @@
           />
         </div>
       </div>
-    </ModalWindow>
-  </transition>
+      <button
+        class="close-window-button"
+        @click="closeWindow(false)"
+      >
+        X
+      </button>
+    </div>
+  </ModalWindow>
 </template>
 
 <script setup>
@@ -124,13 +129,15 @@ li {
   list-style-type: none;
 }
 
-.modal-window {
+.calendar-window {
   position: absolute;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
   top: 25%;
+  display: flex;
+  justify-content: center;
   max-width: 450px;
   padding: 15px 5px 15px;
   background-color: #292929;
@@ -153,19 +160,5 @@ li {
       }
     }
   }
-}
-
-.slide-fade-enter-active {
-  transition: all 0.4s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(-20px);
-  opacity: 0;
 }
 </style>
