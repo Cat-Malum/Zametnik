@@ -58,7 +58,6 @@ const closeClickOnOutside = (event) => {
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateX(-20px);
   opacity: 0;
 }
 </style>

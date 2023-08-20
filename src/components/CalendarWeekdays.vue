@@ -25,4 +25,10 @@ const weekdays = computed(() => {
   align-items: center;
   margin: 5px 0;
 }
+
+// @media screen and (max-width: 470px) {
+//   .day-of-week {
+//     margin: 2px 0;
+//   }    
+// }
 </style>

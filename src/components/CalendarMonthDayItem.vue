@@ -79,4 +79,11 @@ const props = defineProps({
     background-color: #dddbdb;
   }
 }
+
+@media screen and (max-width: 470px) {
+  .calendar-day {
+    margin: 3px;
+    padding: 7px;
+  }    
+}
 </style>

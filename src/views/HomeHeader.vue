@@ -47,4 +47,10 @@ const openCalendar = () => {
     justify-self: center;
   }
 }
+
+@media screen and (max-width: 470px) {
+  .header__wrapper {
+    padding: 2vh 10px;
+  }
+}
 </style>

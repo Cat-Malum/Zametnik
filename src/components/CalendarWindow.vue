@@ -161,4 +161,14 @@ li {
     }
   }
 }
+
+@media screen and (max-width: 470px) {
+  .calendar-window {
+    max-width: 320px;
+
+    .calendar-month {
+      margin-right: 15px;
+    }
+  }    
+}
 </style>

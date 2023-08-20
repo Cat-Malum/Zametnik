@@ -51,4 +51,10 @@ const close = () => signalsStore.changeSignalForAlertWindow();
     line-height: 4.5rem;
   }
 }
+
+@media screen and (max-width: 470px) {
+  .window-alert {
+    max-width: 270px;
+  }
+}
 </style>

@@ -64,7 +64,7 @@ const deleteNoteAndClose = (id) => {
   border-radius: 5px;
   z-index: 15;
 
-  .window-for-delete__buttons {
+  &__buttons {
     display: flex;
     justify-content: space-between;
     margin: 20px auto 0;
@@ -74,5 +74,11 @@ const deleteNoteAndClose = (id) => {
       width: 100px;
     }
   }
+}
+
+@media screen and (max-width: 470px) {
+  .window-for-delete {
+    max-width: 300px;
+  }    
 }
 </style>

@@ -49,4 +49,18 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
   height: 100%;
 }
+
+@media screen and (max-width: 470px) {
+  body {
+    font-size: 14px;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+  }
+
+  .app-content {
+    padding: 0 10px 40px;
+  }
+}
 </style>

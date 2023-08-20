@@ -1,24 +1,24 @@
 <template>
-  <div
+  <!-- <div
     class="calendar"
     :class="{'calendar__open': signalsStore.signalForCalendar}"
     @click="closeClickOnOutside"
-  >
+  > -->
     <calendar-month />
-  </div>
+  <!-- </div> -->
 </template>
 
 <script setup>
-import { useSignalsStore } from '@/store/signalsStore';
+// import { useSignalsStore } from '@/store/signalsStore';
 import CalendarMonth from '@/components/CalendarMonth.vue';
 
-const signalsStore = useSignalsStore();
+// const signalsStore = useSignalsStore();
 
-const closeClickOnOutside = (event) => {
-  if (event.target.classList.contains('calendar__open')) {
-    signalsStore.changeSignalForCalendar();
-  }
-};
+// const closeClickOnOutside = (event) => {
+//   if (event.target.classList.contains('calendar__open')) {
+//     signalsStore.changeSignalForCalendar();
+//   }
+// };
 </script>
 
 <style lang="scss">

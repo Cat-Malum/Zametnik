@@ -87,11 +87,11 @@
 
     <window-for-delete
       :id="prop"
-      v-if="signalsStore.signalForDeleteBtn"
+      v-show="signalsStore.signalForDeleteBtn"
     />
 
-    <window-alert 
-      v-if="signalsStore.signalForAlertWindow"
+    <window-alert
+      v-show="signalsStore.signalForAlertWindow"
     />
   </div>
 </template>
