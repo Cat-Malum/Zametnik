@@ -7,32 +7,32 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue'
-import { formatingCurrentDate } from '@/common/helpers'
+import { defineProps, defineEmits } from 'vue';
+import { formatingCurrentDate } from '@/common/helpers';
 
 const props = defineProps({
   selectedDate: {
     type: Date,
     required: true
   }
-})
+});
 
-const emit = defineEmits(['dateSelected'])
+const emit = defineEmits(['dateSelected']);
 
 const selectPrevious = () => {
-  const newSelectedDate = props.selectedDate.setMonth(props.selectedDate.getMonth() - 1)
-  emit('dateSelected', newSelectedDate)
-}
+  const newSelectedDate = props.selectedDate.setMonth(props.selectedDate.getMonth() - 1);
+  emit('dateSelected', newSelectedDate);
+};
 
 const selectCurrent = () => {
-  const newSelectedDate = new Date()
-  emit('dateSelected', newSelectedDate)
-}
+  const newSelectedDate = new Date();
+  emit('dateSelected', newSelectedDate);
+};
 
 const selectNext = () => {
-  const newSelectedDate = props.selectedDate.setMonth(props.selectedDate.getMonth() + 1)
-  emit('dateSelected', newSelectedDate)
-}
+  const newSelectedDate = props.selectedDate.setMonth(props.selectedDate.getMonth() + 1);
+  emit('dateSelected', newSelectedDate);
+};
 </script>
 
 <style scoped lang="scss">

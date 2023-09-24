@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { useSignalsStore } from '@/store/signalsStore';
+import { useSignalsStore } from '@/stores/signalsStore';
 import CalendarWindow from './CalendarWindow.vue';
 
 const signalsStore = useSignalsStore();

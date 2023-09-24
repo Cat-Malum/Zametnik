@@ -10,12 +10,12 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed } from 'vue';
 
-const WEEKDAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+const WEEKDAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 const weekdays = computed(() => {
-  return WEEKDAYS
-})
+  return WEEKDAYS;
+});
 </script>
 
 <style scoped lang="scss">
@@ -25,10 +25,4 @@ const weekdays = computed(() => {
   align-items: center;
   margin: 5px 0;
 }
-
-// @media screen and (max-width: 470px) {
-//   .day-of-week {
-//     margin: 2px 0;
-//   }    
-// }
 </style>

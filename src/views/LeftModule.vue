@@ -99,8 +99,8 @@
 <script setup>
 import { ref } from 'vue';
 import { formatingDateForNote } from '@/common/helpers';
-import { useNotesStore } from '@/store/notesStore';
-import { useSignalsStore } from '@/store/signalsStore';
+import { useNotesStore } from '@/stores/notesStore';
+import { useSignalsStore } from '@/stores/signalsStore';
 import { generateId } from '@/common/helpers';
 import WindowForDelete from '@/components/WindowForDelete.vue';
 import WindowAlert from '@/components/WindowAlert.vue';

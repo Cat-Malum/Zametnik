@@ -26,8 +26,8 @@
 
 <script setup>
 import ModalWindow from './ModalWindow.vue';
-import { useNotesStore } from '@/store/notesStore';
-import { useSignalsStore } from '@/store/signalsStore';
+import { useNotesStore } from '@/stores/notesStore';
+import { useSignalsStore } from '@/stores/signalsStore';
 import { defineProps } from 'vue';
 
 const props = defineProps({

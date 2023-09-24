@@ -19,7 +19,7 @@
 
 <script setup>
 import ModalWindow from './ModalWindow.vue';
-import { useSignalsStore } from '@/store/signalsStore';
+import { useSignalsStore } from '@/stores/signalsStore';
 
 const signalsStore = useSignalsStore();
 

@@ -44,7 +44,7 @@ import { computed, ref, defineProps, defineEmits } from 'vue';
 import CalendarDateSelector from './CalendarDateSelector.vue';
 import CalendarWeekdays from './CalendarWeekdays.vue';
 import CalendarMonthDayItem from './CalendarMonthDayItem.vue';
-import ModalWindow from './ModalWindow.vue';
+import ModalWindow from '@/components/ModalWindow.vue';
 import { getNumberOfDaysInMonth, getWeekdayIndex } from '@/common/helpers';
 
 const props = defineProps({

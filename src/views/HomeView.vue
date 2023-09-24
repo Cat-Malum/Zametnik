@@ -5,13 +5,13 @@
     />
   </div>
 
-  <home-calendar />
+  <calendar-home />
 </template>
 
 <script setup>
-import { useNotesStore } from '@/store/notesStore';
+import { useNotesStore } from '@/stores/notesStore';
 import LeftModule from './LeftModule.vue';
-import HomeCalendar from './HomeCalendar.vue';
+import CalendarHome from '@/components/calendar/CalendarHome.vue';
 
 const notesStore = useNotesStore();
 </script>
