@@ -49,20 +49,14 @@ const deleteNoteAndClose = (id) => {
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/scss/mixins/window.scss';
+
 .window-for-delete {
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
+  @include window;
   top: 35%;
   text-align: center;
   max-width: 460px;
   padding: 20px 0;
-  background-color: #292929;
-  border: 1px solid #dddbdb;
-  border-radius: 5px;
-  z-index: 15;
 
   &__buttons {
     display: flex;

@@ -38,8 +38,8 @@ export const formatingDateForNote = () => {
 }
 
 export const generateId = () => {
-  const abc = "abcdefghijklmnopqrstuvwxyz0123456789";
-  let id = "";
+  const abc = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  let id = '';
 
   while (id.length < 10) {
     id += abc[Math.floor(Math.random() * abc.length)];

@@ -27,21 +27,13 @@ const close = () => signalsStore.changeSignalForAlertWindow();
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/scss/mixins/window.scss';
+
 .window-alert {
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
+  @include window;
   top: 35%;
-  display: flex;
-  justify-content: center;
   max-width: 350px;
   padding: 20px 0;
-  background-color: #292929;
-  border: 1px solid #dddbdb;
-  border-radius: 5px;
-  z-index: 15;
 
   .window-alert__inner {
     margin-right: 45px;

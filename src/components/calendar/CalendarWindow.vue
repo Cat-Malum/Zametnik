@@ -125,25 +125,17 @@ const closeWindow = (signal) => {
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/scss/mixins/window.scss';
+
 li {
   list-style-type: none;
 }
 
 .calendar-window {
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
+  @include window;
   top: 25%;
-  display: flex;
-  justify-content: center;
   max-width: 450px;
   padding: 15px 5px 15px;
-  background-color: #292929;
-  border: 1px solid #dddbdb;
-  border-radius: 5px;
-  z-index: 15;
 
   .calendar-month {
     height: auto;

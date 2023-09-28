@@ -85,12 +85,12 @@
       Заметок пока нет
     </div>
 
-    <window-for-delete
+    <WindowForDelete
       :id="prop"
       v-show="signalsStore.signalForDeleteBtn"
     />
 
-    <window-alert
+    <WindowAlert
       v-show="signalsStore.signalForAlertWindow"
     />
   </div>
