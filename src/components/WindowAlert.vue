@@ -1,5 +1,5 @@
 <template>
-  <ModalWindow
+  <modal-window
     :signal="signalsStore.signalForAlertWindow"
     @modalClose="close"
   >
@@ -14,7 +14,7 @@
         X
       </button>
     </div>
-  </ModalWindow>
+  </modal-window>
 </template>
 
 <script setup>

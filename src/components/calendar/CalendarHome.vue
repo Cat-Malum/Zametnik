@@ -1,5 +1,5 @@
 <template>
-  <CalendarWindow
+  <calendar-window
     :signal="signalsStore.signalForCalendar"
     @dropSignal="signalsStore.changeSignalForCalendar()"
   />

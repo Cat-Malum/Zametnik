@@ -1,8 +1,8 @@
 <template>
   <main>
-    <HomeHeader />
+    <home-header />
     <div class="app-content">
-      <HomeView />
+      <home-view />
     </div>
   </main>
 </template>

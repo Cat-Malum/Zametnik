@@ -1,6 +1,6 @@
 <template>
   <div class="days-grid">
-    <CalendarMonthDayItem
+    <calendar-month-day-item
       v-for="day in props.days"
       :key="day.date"
       :day="day.date"

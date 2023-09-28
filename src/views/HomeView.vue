@@ -1,11 +1,11 @@
 <template>
   <div class="left-module">
-    <LeftModule
+    <left-module
       @createNote="notesStore.addNote"
     />
   </div>
 
-  <CalendarHome />
+  <calendar-home />
 </template>
 
 <script setup>

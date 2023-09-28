@@ -1,21 +1,21 @@
 <template>
-  <ModalWindow
+  <modal-window
     :signal="props.signal"
     @modalClose="closeWindow"
   >
     <div class="calendar-window">
       <div class="calendar-month">
         <div class="calendar-month-header">
-          <CalendarDateSelector
+          <calendar-date-selector
             :selected-date="selectedDate"
             @date-selected="selectDate"
           />
         </div>
 
-        <CalendarWeekdays />
+        <calendar-weekdays />
 
         <div ref="calendarDays" class="days-grid">
-          <CalendarMonthDayItem
+          <calendar-month-day-item
             v-for="day in days"
             :key="day.date"
             :day="day.date"
@@ -36,7 +36,7 @@
         X
       </button>
     </div>
-  </ModalWindow>
+  </modal-window>
 </template>
 
 <script setup>

@@ -1,5 +1,5 @@
 <template>
-  <ModalWindow
+  <modal-window
     :signal="signalsStore.signalForDeleteBtn" 
     @modalClose="close"
   >
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-  </ModalWindow>
+  </modal-window>
 </template>
 
 <script setup>
